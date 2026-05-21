@@ -18,24 +18,6 @@ function App() {
       data_criacao: "2026-05-11 00:00:00",
       data_atualizacao: "2026-05-11 00:00:00",
     },
-    {
-      id: 2,
-      nome_completo: "Exemplo Teste 2",
-      cpf: "00000000000",
-      email: "teste2@example.com",
-      vinculo_institucional: "Aluno",
-      data_criacao: "2026-05-11 00:00:00",
-      data_atualizacao: "2026-05-11 00:00:00",
-    },
-    {
-      id: 3,
-      nome_completo: "Exemplo Teste 3",
-      cpf: "00000000000",
-      email: "teste3@example.com",
-      vinculo_institucional: "Funcionário",
-      data_criacao: "2026-05-11 00:00:00",
-      data_atualizacao: "2026-05-11 00:00:00",
-    },
   ]);
 
   const [cashs, setCashs] = useState([
@@ -50,7 +32,7 @@ function App() {
     {
       id: 2,
       valor: 10.0,
-      usuario_id: 2,
+      usuario_id: 1,
       status: "Pago",
       data_lancamento: "2026-05-11 00:00:00",
       data_modificacao: "2026-05-11 00:00:00",
@@ -60,10 +42,9 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50">
       <Header />
-
       <div className="flex-1 p-5">
         <div className="w-full min-h-screen overflow-x-hidden p-3 md:p-6">
-          <Dashbord users={users} /> {/* Fazer as Funções */}
+          <Dashbord cashs={cashs} />
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
             <AddUser users={users} /> {/* Fazer as Funções */}
             <AddCash /> {/* Fazer as Funções */}
@@ -74,7 +55,6 @@ function App() {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
