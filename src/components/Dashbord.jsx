@@ -3,7 +3,7 @@ function Dashbord({ cashs }) {
     let total_vendas = 0;
 
     {
-      cashs.map((cashs) => (total_vendas += cashs.valor));
+      cashs.map((cash) => (total_vendas += cash.valor));
     }
 
     return total_vendas;

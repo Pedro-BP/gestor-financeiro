@@ -1,11 +1,16 @@
-function AddUser({ handleSubmit, formUserData, handleChange, editandoUserId }) {
+function AddUser({
+  handleUserSubmit,
+  formUserData,
+  handleUserChange,
+  editandoUserId,
+}) {
   return (
     <div className="w-full rounded-2xl border border-zinc-300 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800 p-4 md:p-6 shadow-sm">
       <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-6">
         Cadastro de Usuários
       </h2>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <form onSubmit={handleUserSubmit} className="flex flex-col gap-4">
         <div>
           <label className="block text-sm font-medium text-zinc-600 dark:text-zinc-400 mb-2">
             Nome Completo
@@ -14,7 +19,7 @@ function AddUser({ handleSubmit, formUserData, handleChange, editandoUserId }) {
             type="text"
             name="nome_completo"
             value={formUserData.nome_completo}
-            onChange={handleChange}
+            onChange={handleUserChange}
             required
             className="w-full p-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -27,7 +32,7 @@ function AddUser({ handleSubmit, formUserData, handleChange, editandoUserId }) {
             type="text"
             name="cpf"
             value={formUserData.cpf}
-            onChange={handleChange}
+            onChange={handleUserChange}
             required
             className="w-full p-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -40,7 +45,7 @@ function AddUser({ handleSubmit, formUserData, handleChange, editandoUserId }) {
             type="email"
             name="email"
             value={formUserData.email}
-            onChange={handleChange}
+            onChange={handleUserChange}
             required
             className="w-full p-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -52,7 +57,7 @@ function AddUser({ handleSubmit, formUserData, handleChange, editandoUserId }) {
           <select
             name="vinculo_institucional"
             value={formUserData.vinculo_institucional}
-            onChange={handleChange}
+            onChange={handleUserChange}
             required
             className="w-full p-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
