@@ -20,45 +20,49 @@ function App() {
     },
   ]);
 
-  const [formData, setFormData] = useState({
+  const [formUserData, setFormUserData] = useState({
     nome_completo: "",
     cpf: "",
     email: "",
     vinculo_institucional: "",
+    data_criacao: "",
+    data_atualizacao: "",
   });
 
-  const [editandoId, setEditandoId] = useState(null);
+  const [editandoUserId, setEditandoUserId] = useState(null);
 
-  function handleChange(e) {
+  function handleUserChange(e) {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormUserData({ ...formUserData, [name]: value });
   }
 
-  function handleSubmit(e) {
+  function handleUserSubmit(e) {
     e.preventDefault();
 
-    if (editandoId !== null) {
+    if (editandoUserId !== null) {
       const usuariosAtualizados = users.map((user) =>
-        user.id === editandoId
+        user.id === editandoUserId
           ? {
               ...user,
-              ...formData,
+              ...formUserData,
             }
           : user,
       );
 
       setUsers(usuariosAtualizados);
-      setEditandoId(null);
+      setEditandoUserId(null);
     } else {
       const novoUsuario = {
         id: users.length + 1,
-        ...formData,
+        ...formUserData,
+        data_criacao: new Date().toLocaleString(),
+        data_atualizacao: new Date().toLocaleString(),
       };
 
       setUsers([...users, novoUsuario]);
     }
 
-    setFormData({
+    setFormUserData({
       nome_completo: "",
       cpf: "",
       email: "",
@@ -66,21 +70,23 @@ function App() {
     });
   }
 
-  function handleDelete(id) {
+  function handleUserDelete(id) {
     const novosUsuarios = users.filter((user) => user.id !== id);
 
     setUsers(novosUsuarios);
   }
 
-  function handleEdit(user) {
-    setFormData({
+  function handleUserEdit(user) {
+    setFormUserData({
       nome_completo: user.nome_completo,
       cpf: user.cpf,
       email: user.email,
       vinculo_institucional: user.vinculo_institucional,
+      data_criacao: user.data_criacao,
+      data_atualizacao: new Date().toLocaleString(),
     });
 
-    setEditandoId(user.id);
+    setEditandoUserId(user.id);
   }
 
   const [cashs, setCashs] = useState([
@@ -102,30 +108,107 @@ function App() {
     },
   ]);
 
+  const [formCashData, setFormCashData] = useState({
+    valor: "",
+    usuario_id: "",
+    status: "",
+    data_lancamento: "",
+    data_modificacao: "",
+  });
+
+  const [editandoCashId, setEditandoCashId] = useState(null);
+
+  function handleCashChange(e) {
+    const { name, value } = e.target;
+    setFormCashData({ ...formCashData, [name]: value });
+  }
+
+  function handleCashSubmit(e) {
+    e.preventDefault();
+
+    if (editandoCashId !== null) {
+      const cashsAtualizados = cashs.map((cash) =>
+        cash.id === editandoCashId
+          ? {
+              ...cash,
+              ...formCashData,
+            }
+          : cash,
+      );
+
+      setCashs(cashsAtualizados);
+      setEditandoCashId(null);
+    } else {
+      const novoCash = {
+        id: cashs.length + 1,
+        ...formCashData,
+        data_lancamento: new Date().toLocaleString(),
+        data_modificacao: new Date().toLocaleString(),
+      };
+
+      setCashs([...cashs, novoCash]);
+    }
+
+    setFormCashData({
+      valor: "",
+      usuario_id: "",
+      status: "",
+      data_lancamento: "",
+      data_modificacao: "",
+    });
+  }
+
+  function handleCashDelete(id) {
+    const novosCashs = cashs.filter((cash) => cash.id !== id);
+
+    setCashs(novosCashs);
+  }
+
+  function handleCashEdit(cash) {
+    setFormCashData({
+      valor: cash.valor,
+      usuario_id: cash.usuario_id,
+      status: cash.status,
+      data_lancamento: cash.data_lancamento,
+      data_modificacao: new Date().toLocaleString(),
+    });
+
+    setEditandoCashId(cash.id);
+  }
+
   return (
     <div className="min-h-screen flex flex-col bg-white text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50">
       <Header />
       <div className="flex-1 p-5">
         <div className="w-full min-h-screen overflow-x-hidden p-3 md:p-6">
           <Dashbord cashs={cashs} />
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-6">
+          <div className="flex flex-col xl:flex-row gap-6 mb-6">
             <AddUser
               users={users}
-              handleSubmit={handleSubmit}
-              formData={formData}
-              handleChange={handleChange}
-              editandoId={editandoId}
+              handleUserSubmit={handleUserSubmit}
+              formUserData={formUserData}
+              handleUserChange={handleUserChange}
+              editandoUserId={editandoUserId}
             />
-            <AddCash /> {/* Fazer as Funções */}
+            <AddCash
+              cashs={cashs}
+              handleCashSubmit={handleCashSubmit}
+              formCashData={formCashData}
+              handleCashChange={handleCashChange}
+              editandoCashId={editandoCashId}
+            />
           </div>
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          <div className="flex flex-col xl:flex-row gap-6 items-start">
             <ShowUsers
               users={users}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
+              handleUserEdit={handleUserEdit}
+              handleUserDelete={handleUserDelete}
             />
-            {/* Adicionar data_lancamento e data_modificacao */}
-            <ShowCashs /> {/* Fazer as Funções */}
+            <ShowCashs
+              cashs={cashs}
+              handleCashEdit={handleCashEdit}
+              handleCashDelete={handleCashDelete}
+            />
           </div>
         </div>
       </div>
