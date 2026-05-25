@@ -132,6 +132,8 @@ function App() {
           ? {
               ...cash,
               ...formCashData,
+              valor: Number(formCashData.valor),
+              usuario_id: Number(formCashData.usuario_id),
             }
           : cash,
       );
@@ -142,6 +144,8 @@ function App() {
       const novoCash = {
         id: cashs.length + 1,
         ...formCashData,
+        valor: Number(formCashData.valor),
+        usuario_id: Number(formCashData.usuario_id),
         data_lancamento: new Date().toLocaleString(),
         data_modificacao: new Date().toLocaleString(),
       };

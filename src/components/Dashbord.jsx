@@ -3,7 +3,7 @@ function Dashbord({ cashs }) {
     let total_vendas = 0;
 
     {
-      cashs.map((cash) => (total_vendas += cash.valor));
+      cashs.map((cash) => (total_vendas += Number(cash.valor)));
     }
 
     return total_vendas;
@@ -14,7 +14,7 @@ function Dashbord({ cashs }) {
 
     cashs.forEach((cash) => {
       if (cash.status === "Pago") {
-        total_recebidos += cash.valor;
+        total_recebidos += Number(cash.valor);
       }
     });
 
@@ -26,7 +26,7 @@ function Dashbord({ cashs }) {
 
     cashs.forEach((cash) => {
       if (cash.status === "Pendente") {
-        total_abertos += cash.valor;
+        total_abertos += Number(cash.valor);
       }
     });
 

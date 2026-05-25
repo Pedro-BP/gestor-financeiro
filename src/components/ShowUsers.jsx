@@ -34,7 +34,6 @@ function ShowUsers({ users, handleUserEdit, handleUserDelete }) {
             >
               <Pencil />
             </button>
-
             <button
               type="button"
               onClick={() => handleUserDelete(user.id)}
