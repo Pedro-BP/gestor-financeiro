@@ -188,6 +188,7 @@ function App() {
           <Dashbord cashs={cashs} />
           <div className="flex flex-col xl:flex-row gap-6 mb-6">
             <AddUser
+              id="edit-user-form"
               users={users}
               handleUserSubmit={handleUserSubmit}
               formUserData={formUserData}
@@ -195,7 +196,8 @@ function App() {
               editandoUserId={editandoUserId}
             />
             <AddCash
-              cashs={cashs}
+              id="edit-cash-form"
+              users={users}
               handleCashSubmit={handleCashSubmit}
               formCashData={formCashData}
               handleCashChange={handleCashChange}

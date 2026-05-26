@@ -36,7 +36,12 @@ function ShowCashs({ cashs, handleCashEdit, handleCashDelete }) {
           <div className="flex gap-4">
             <button
               type="button"
-              onClick={() => handleCashEdit(cash)}
+              onClick={() => {
+                handleCashEdit(cash);
+                document
+                  .getElementById("edit-cash-form")
+                  .scrollIntoView({ behavior: "smooth" });
+              }}
               className="flex-none bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white p-3 rounded-xl transition"
             >
               <Pencil />

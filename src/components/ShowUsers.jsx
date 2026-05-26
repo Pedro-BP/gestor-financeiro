@@ -29,7 +29,12 @@ function ShowUsers({ users, handleUserEdit, handleUserDelete }) {
           <div className="flex gap-4">
             <button
               type="button"
-              onClick={() => handleUserEdit(user)}
+              onClick={() => {
+                handleUserEdit(user);
+                document
+                  .getElementById("edit-user-form")
+                  .scrollIntoView({ behavior: "smooth" });
+              }}
               className="flex-none bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white p-3 rounded-xl transition"
             >
               <Pencil />
